@@ -102,6 +102,23 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>api-tests</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.2.5</version>
+                        <configuration>
+                            <skipTests>false</skipTests>
+                            <includes>
+                                <include>**/O02_apitests/**/*</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
 </project>
