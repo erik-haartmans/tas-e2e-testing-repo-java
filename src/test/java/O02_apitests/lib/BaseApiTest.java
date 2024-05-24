@@ -13,7 +13,6 @@ public class BaseApiTest {
 
     private final String BASE_URL = "https://tas.bff.staging.polteq-testing.com";
 
-    protected RequestSpecification requestSpecificationBff;
     protected RequestSpecification rsRegisterUser;
     protected RequestSpecification rsLogin;
     protected RegisterUserRequestData registerRequestData;

@@ -13,17 +13,26 @@ public class LoginTests extends BaseApiTest {
 
     @Test
     public void itShouldBePossibleToLoginWithValidCredentials() {
-        LoginRequestData loginRequestData = new LoginRequestData("a", "a");
+        given()
+                .spec(rsRegisterUser)
+                .and().body(registerRequestData)
+                .when()
+                .post()
+                .then()
+                .log().everything();
+
+        LoginRequestData loginRequestData = new LoginRequestData(
+                registerRequestData.getEmail(),
+                registerRequestData.getPassword());
 
         given()
-                .spec(requestSpecificationBff)
+                .spec(rsLogin)
                 .and().contentType(ContentType.JSON)
                 .and().body(loginRequestData)
         .when()
-                .post("/login")
+                .post()
         .then()
                 .log().everything()
-                .and().statusCode(HttpStatus.SC_FORBIDDEN)
-                .and().body("message", equalTo("Could not login with these credentials"));
+                .and().statusCode(HttpStatus.SC_OK);
     }
 }
